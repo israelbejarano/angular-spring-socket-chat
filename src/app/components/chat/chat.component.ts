@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
       this.conectado = true;
       this.client.subscribe('/chat/mensaje', (e) => {
         const mensaje: Mensaje = JSON.parse(e.body) as Mensaje;
+        mensaje.fecha = new Date(mensaje.fecha);
         this.mensajes.push(mensaje);
         console.log(mensaje);
       });
